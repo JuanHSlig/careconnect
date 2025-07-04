@@ -1,46 +1,87 @@
-# Getting Started with Create React App
+# CAREConnect - Un CRM para la Gestión de Clientes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CAREConnect es una aplicación CRM (Customer Relationship Management) diseñada para ayudar a los equipos a gestionar las interacciones con sus clientes de manera eficiente. Permite registrar conversaciones, administrar una base de datos de clientes, visualizar métricas clave y seguir el "viaje del cliente" a través de diferentes etapas.
 
-## Available Scripts
+## ✨ Funcionalidades Principales
 
-In the project directory, you can run:
+La aplicación está construida con un stack moderno y se centra en una experiencia de usuario clara y productiva.
 
-### `npm start`
+### 1. **Registro de Conversaciones**
+- **Formulario simple e intuitivo** para registrar cada interacción.
+- **Campos clave**: Cliente, tipo de conversación (Estratégica, Preventa, Posventa), fecha, notas y potencial de recompra.
+- **Guardado instantáneo** y actualización de la fecha de última interacción del cliente.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2. **Gestión de Clientes**
+- **CRUD completo** para clientes.
+- **Información detallada**: Nombre, estado (Activo, Dormido), tipo (Ordinario, Premium) y etapa del journey (Desconocido, Prospecto, Cliente, Facturado).
+- **Múltiples contactos** por cliente, con nombre, email y teléfono.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 3. **Dashboard de Métricas CARE**
+- **Visualización de datos clave** en tarjetas modernas.
+- **Métricas importantes**: Total de conversaciones, distribución por tipo, estado de clientes y oportunidades de recompra.
+- **Gráficos simples** para un entendimiento rápido del estado del negocio.
+- **Actividad Reciente**: Un feed con las últimas interacciones para estar siempre al día.
 
-### `npm test`
+### 4. **Customer Journey Visual**
+- **Línea de tiempo** que muestra la progresión de un cliente a través de las etapas: `Desconocido` → `Prospecto` → `Cliente` → `Facturado`.
+- **Identificación clara** de la etapa actual de cada cliente.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 5. **Sistema de Notificaciones**
+- **Notificaciones en tiempo real** dentro de la app.
+- **Alertas automáticas** para eventos importantes:
+  - Nueva conversación registrada.
+  - Cambio en el estado o etapa de un cliente.
+- **Panel de notificaciones** con contador de no leídas y opción de "marcar todo como leído".
 
-### `npm run build`
+### 6. **Personalización y Temas**
+- **Modo claro y oscuro** para adaptarse a las preferencias del usuario.
+- **Selector de temas** con paletas de colores predefinidas y la opción de crear un tema personalizado.
+- **Configuración de perfil**, incluyendo cambio de contraseña y avatar.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Stack Tecnológico
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend**: React, TypeScript, Tailwind CSS, Lucide Icons.
+- **Backend**: Node.js con Express.
+- **Base de Datos**: SQLite para simplicidad y portabilidad.
+- **Autenticación**: Basada en JWT (JSON Web Tokens).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Cómo Empezar
 
-### `npm run eject`
+Sigue estos pasos para levantar el entorno de desarrollo en tu máquina local.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prerrequisitos
+- [Node.js](https://nodejs.org/) (versión 16 o superior)
+- [npm](https://www.npmjs.com/) (generalmente se instala con Node.js)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Pasos de Instalación
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1.  **Clona el repositorio** (o descarga el código fuente).
+    ```bash
+    git clone <URL-DEL-REPOSITORIO>
+    cd careconnect
+    ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2.  **Instala las dependencias** del proyecto. Esto instalará tanto las dependencias del servidor (Express) como las del cliente (React).
+    ```bash
+    npm install
+    ```
 
-## Learn More
+3.  **Inicia el servidor backend**. Abrirá el servidor en `http://localhost:4000`. La primera vez que se ejecute, creará el archivo de base de datos `careconnect.db` con datos de ejemplo.
+    ```bash
+    node server/index.js
+    ```
+    
+    *Nota: Si realizas cambios en la estructura de la base de datos en `server/index.js`, puede que necesites borrar el archivo `careconnect.db` para que se regenere correctamente.*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4.  **Inicia la aplicación frontend**. En otra terminal, ejecuta el siguiente comando. Esto abrirá la aplicación en `http://localhost:3000`.
+    ```bash
+    npm start
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+¡Y listo! Ahora puedes acceder a la aplicación en tu navegador.
+
+### Usuarios de Ejemplo
+La aplicación se inicializa con tres usuarios para que puedas probar las diferentes funcionalidades y temas:
+- **Usuario**: `admin` / **Contraseña**: `admin123`
+- **Usuario**: `vendedor` / **Contraseña**: `vendedor123`
+- **Usuario**: `gerente` / **Contraseña**: `gerente123` 

@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #3B82F6; /* azul brillante */
+  --secondary: #10B981; /* verde moderno */
+  --accent: #3B82F6; /* igual que primario para consistencia */
+  --danger: #EF4444; /* rojo para errores */
+  --bg: #F8FAFC; /* fondo principal claro */
+  --bg-secondary: #FFFFFF; /* fondo secundario/tarjetas */
+  --fg: #1A1A1A; /* texto principal */
+  --fg-secondary: #4D4D4D; /* texto secundario */
+  --table-bg: #FFFFFF; /* fondo de tablas/tarjetas */
+  --main-bg: #F8FAFC; /* fondo principal */
+  --border: #E0E0E0; /* bordes y sombras suaves */
+  --shadow: 0 2px 8px rgba(224,224,224,0.5); /* sombra clara */
+}
+.dark :root {
+  --bg: #0F172A;
+  --bg-secondary: #1E293B;
+  --fg: #EAEAEA;
+  --fg-secondary: #A0A0A0;
+  --primary: #3B82F6;
+  --secondary: #10B981;
+  --accent: #3B82F6;
+  --danger: #F87171;
+  --table-bg: #1E293B; /* fondo oscuro para tablas/tarjetas */
+  --main-bg: #0F172A;
+  --border: #334155;
+  --shadow: 0 2px 8px rgba(44,44,44,0.7);
+}
+
+body {
+  color: var(--fg);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Estilos genéricos para tarjetas y tablas que respetan el modo claro/oscuro */
+.card,
+.table-card {
+  background: var(--table-bg);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem; /* radio suave */
+}
+
+.table-row {
+  background: var(--table-bg);
+  color: var(--fg);
+}
+
+.table-header {
+  background: var(--bg-secondary);
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.table-cell {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Variantes hover */
+.table-row:hover {
+  background: var(--bg-secondary);
+}
+
+.main-bg {
+  background: var(--main-bg);
+  color: var(--fg);
+}
+
+select {
+  background: var(--table-bg);
+  color: var(--fg);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  transition: background 0.2s, color 0.2s;
+}
+.dark select {
+  background: #232b3a;
+  color: #EAEAEA;
+  border: 1px solid #334155;
+}
+
+input, textarea {
+  background: var(--table-bg);
+  color: var(--fg);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  transition: background 0.2s, color 0.2s;
+}
+.dark input, .dark textarea {
+  background: #232b3a;
+  color: #EAEAEA;
+  border: 1px solid #334155;
+}
+
+/* Responsive base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+img, table {
+  max-width: 100%;
+  height: auto;
+}
