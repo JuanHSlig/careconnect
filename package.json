@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "stylelint": "^16.21.0",
     "stylelint-config-tailwindcss": "^1.0.0"
   }

@@ -9,8 +9,6 @@ import { Login } from './components/Auth/Login';
 import { Settings as SettingsComponent } from './components/Settings/Settings';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { AppProvider } from './contexts/AppContext';
-import { NotificationProvider } from './contexts/NotificationContext';
-import { NotificationBell } from './components/Notifications/NotificationBell';
 
 const NAV = [
   { key: 'dashboard', label: 'Dashboard', icon: <BarChart2 size={20} /> },
@@ -144,68 +142,63 @@ function AppContent() {
 
   return (
     <AppProvider>
-      <NotificationProvider>
-        <div className={clsx('flex flex-col md:flex-row min-h-screen font-vibe', dark ? 'text-white' : 'text-gray-900')}>
-          <aside className="w-full md:w-60 flex flex-col gap-2 p-4 bg-white/80 dark:bg-gray-800/80 shadow-xl">
-            <div className="text-2xl font-bold mb-8 tracking-tight flex items-center gap-2">
-              <span className="bg-gradient-to-r from-vibePurple to-vibePink bg-clip-text text-transparent">CAREConnect</span>
+      <div className={clsx('flex flex-col md:flex-row min-h-screen font-vibe', dark ? 'text-white' : 'text-gray-900')}>
+        <aside className="w-full md:w-60 flex flex-col gap-2 p-4 bg-white/80 dark:bg-gray-800/80 shadow-xl">
+          <div className="text-2xl font-bold mb-8 tracking-tight flex items-center gap-2">
+            <span className="bg-gradient-to-r from-vibePurple to-vibePink bg-clip-text text-transparent">CAREConnect</span>
+          </div>
+          
+          {/* Información del usuario */}
+          <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div className="flex items-center gap-2 text-sm">
+              <User className="h-4 w-4" />
+              <span className="font-medium">{user?.name}</span>
             </div>
-            
-            {/* Información del usuario */}
-            <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <div className="flex items-center gap-2 text-sm">
-                <User className="h-4 w-4" />
-                <span className="font-medium">{user?.name}</span>
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {user?.email}
-              </div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              {user?.email}
             </div>
+          </div>
 
-            <nav className="flex flex-col gap-2">
-              {NAV.map(item => (
-                <button
-                  key={item.key}
-                  className={clsx('flex items-center gap-3 px-4 py-2 rounded-lg transition-all',
-                    view === item.key ? 'bg-vibePurple text-white shadow' : 'hover:bg-vibePink/20 dark:hover:bg-vibePurple/20')}
-                  onClick={() => setView(item.key)}
-                >
-                  {item.icon}
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </nav>
-            
-            <div className="mt-auto flex items-center gap-2">
-              <NotificationBell />
+          <nav className="flex flex-col gap-2">
+            {NAV.map(item => (
               <button
-                className="p-2 rounded-full hover:bg-vibePink/20 dark:hover:bg-vibePurple/20 transition"
-                onClick={() => setDark(d => !d)}
-                aria-label="Toggle dark mode"
+                key={item.key}
+                className={clsx('flex items-center gap-3 px-4 py-2 rounded-lg transition-all',
+                  view === item.key ? 'bg-vibePurple text-white shadow' : 'hover:bg-vibePink/20 dark:hover:bg-vibePurple/20')}
+                onClick={() => setView(item.key)}
               >
-                {dark ? <Sun /> : <Moon />}
+                {item.icon}
+                <span>{item.label}</span>
               </button>
-            </div>
+            ))}
+          </nav>
+          
+          <div className="mt-auto flex flex-col gap-2">
+            <button
+              className="p-2 rounded-full hover:bg-vibePink/20 dark:hover:bg-vibePurple/20 transition"
+              onClick={() => setDark(d => !d)}
+              aria-label="Toggle dark mode"
+            >
+              {dark ? <Sun /> : <Moon />}
+            </button>
             
-            <div className="mt-auto flex flex-col gap-2">
-              <button
-                className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 transition"
-                onClick={logout}
-              >
-                <LogOut className="h-4 w-4" />
-                <span>Cerrar sesión</span>
-              </button>
-            </div>
-          </aside>
-          <main className="flex-1 p-8 overflow-y-auto main-bg w-full">
-            {view === 'dashboard' && <Dashboard />}
-            {view === 'clients' && <ClientList />}
-            {view === 'conversations' && <ConversationList />}
-            {view === 'journey' && <CustomerJourney />}
-            {view === 'settings' && <SettingsComponent />}
-          </main>
-        </div>
-      </NotificationProvider>
+            <button
+              className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 transition"
+              onClick={logout}
+            >
+              <LogOut className="h-4 w-4" />
+              <span>Cerrar sesión</span>
+            </button>
+          </div>
+        </aside>
+        <main className="flex-1 p-8 overflow-y-auto main-bg w-full">
+          {view === 'dashboard' && <Dashboard />}
+          {view === 'clients' && <ClientList />}
+          {view === 'conversations' && <ConversationList />}
+          {view === 'journey' && <CustomerJourney />}
+          {view === 'settings' && <SettingsComponent />}
+        </main>
+      </div>
     </AppProvider>
   );
 }
@@ -214,9 +207,7 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <NotificationProvider>
-          <AppContent />
-        </NotificationProvider>
+        <AppContent />
       </AuthProvider>
     </ThemeProvider>
   );

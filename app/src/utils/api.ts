@@ -144,32 +144,4 @@ export const updateUserPassword = async (passwordData: any) => {
     body: JSON.stringify(passwordData)
   });
   return res.json();
-};
-
-// --- Notificaciones ---
-
-export const getNotifications = async () => {
-  const response = await fetch('/api/notifications', {
-    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-  });
-  if (!response.ok) throw new Error('Error al obtener notificaciones');
-  return response.json();
-};
-
-export const markNotificationAsRead = async (id: number) => {
-  const response = await fetch(`/api/notifications/${id}/read`, {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-  });
-  if (!response.ok) throw new Error('Error al marcar como leída');
-  return response;
-};
-
-export const markAllNotificationsAsRead = async () => {
-  const response = await fetch('/api/notifications/read-all', {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-  });
-  if (!response.ok) throw new Error('Error al marcar todas como leídas');
-  return response;
 }; 
